@@ -1,2 +1,2 @@
 node_modules/
-/src/db/connector.js
+src/db/connector.js
