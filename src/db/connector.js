@@ -5,6 +5,6 @@
 var mysql = require('mysql')
 module.exports = mysql.createConnection({
     host: 'localhost',
-    user: 'root_root',
+    user: 'root',
     database: 'open_chat'
 })
