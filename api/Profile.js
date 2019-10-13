@@ -3,7 +3,7 @@ module.exports = {
     create: function (req, res) {
         //variii
         const payload = req.body;
-        var query = `insert into users values(null, "${payload.name}", "${payload.email}", "${payload.phone.toString()}", null, null, now(), now())`;
+        var query = `insert into users values(null, "${payload.name}", "${payload.email}", "${payload.phone.toString()}", null, now(), now())`;
         db.query(query, function (error, data) {
             if (data == null) {
                 return res.send({ error: "not created" });
