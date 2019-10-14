@@ -9,6 +9,7 @@ var socket = require('socket.io');
 var debug = require('debug')('chat:server');
 var http = require('http');
 var db = require('../src/db/connector');
+var socket = require('socket.io');
 
 /**
  * Get port from environment and store in Express.
@@ -25,6 +26,9 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+var io = socket(server);
+require('../src/socket')(io);
+
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -90,4 +94,6 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+module.exports = server;
 
