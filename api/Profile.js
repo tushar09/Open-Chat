@@ -6,14 +6,14 @@ module.exports = {
         var query = `insert into users values(null, "${payload.name}", "${payload.email}", "${payload.phone.toString()}", null, now(), now())`;
         db.query(query, function (error, data) {
             if (data == null) {
-                return res.send({ error: "not created" });
+                return res.send({ msg: "not created", success: false });
             } else {
                 var passwordQuery = `insert into password values(null, "${data.insertId}", "${payload.pass}")`;
                 db.query(passwordQuery, function (error, data) {
                     if (data != null) {
-                        return res.send({ success: true });
+                        return res.send({ msg: "account created successfully", success: true });
                     } else {
-                        return res.send({ error: "not created" });
+                        return res.json({ msg: "not created", success: false });
                     }
                 })
 
