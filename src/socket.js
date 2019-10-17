@@ -6,7 +6,7 @@ module.exports = function(io) {
         console.log('user connected' + socket.id);
         socket.on('sendMsg', function(obj) {
             msg = JSON.parse(obj);
-            const query = `insert into msg values(null, (select id from users where email = "${user.email}"), "${msg.text}", (select id from users where email = "${msg.email}"), now(), now())`;
+            const query = `insert into msg values(null, (select id from users where email = "${msg.senderEmail}"), "${msg.text}", (select id from users where email = "${msg.email}"), now(), now())`;
             console.log(query);
             db.query(query);
 
