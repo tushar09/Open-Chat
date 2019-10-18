@@ -44,5 +44,34 @@ module.exports = {
                 return res.send({ msg: "Logged in successfully", success: true });
             }
         })
+    },
+    users: function(req, res) {
+        const payLoad = req.body;
+        const query = `select * from users where email <> "${payLoad.email}"`;
+        db.query(query, function(error, data) {
+            if(error){
+                return res.send({ msg: "No users found", success: false });
+            }else {
+                return res.send(data);
+            }
+        })
+    },
+    msg: function(req, res) {
+        const payLoad = req.body;
+        const query = `SELECT * FROM msg JOIN users on msg.sender_id = users.id 
+        WHERE msg.sender_id = (select id from users where email = "${payLoad.email}") 
+        OR msg.receiver_id = (select id from users where email = "${payLoad.receiverEmail}") 
+        or msg.sender_id = (select id from users where email = "${payLoad.receiverEmail}")  
+        OR msg.receiver_id = (select id from users where email = "${payLoad.email}")
+        order by msg.id`;
+        console.log(query);
+        db.query(query, function(error, data) {
+            if(error){
+                return res.send({ msg: "No users found", success: false });
+            }else {
+                return res.send(data);
+            }
+        })
     }
+
 }
