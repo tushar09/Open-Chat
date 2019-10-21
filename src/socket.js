@@ -13,9 +13,29 @@ module.exports = function(io) {
             const userSocket = `select socket_id from users where email = "${msg.email}"`;
             db.query(userSocket, function(error, data) {
                 console.log(data[0].socket_id);
-                socket.to([data[0].socket_id]).emit('msg', msg.text);
+                const msgg = {text: msg.text, sender: msg.senderEmail};
+                socket.to([data[0].socket_id]).emit('msg', msgg);
             })
 
+        });
+        socket.on('call', function(obj) {
+            const callDto = JSON.parse(obj);
+            const userSocket = `select socket_id from users where email = "${callDto.receiver}"`;
+            console.log("Call " + userSocket);
+            db.query(userSocket, function(error, data) {
+                console.log(data[0].socket_id);
+                //socket.to([data[0].socket_id]).emit('msg', msgg);
+                callObj = {caller : callDto.caller, roomId: callDto.roomId};
+                socket.to([data[0].socket_id]).emit('call', callObj);
+            })
+        });
+        socket.on('callReceive', function(obj) {
+            const callReceive = JSON.parse(obj);
+            const userSocket = `select socket_id from users where email = "${callReceive.caller}"`;
+            console.log("Call " + userSocket);
+            db.query(userSocket, function(error, data) {
+                socket.to([data[0].socket_id]).emit('callReceive', callObj);
+            })
         });
         socket.on('userInfo', function(obj) {
             user = JSON.parse(obj);
