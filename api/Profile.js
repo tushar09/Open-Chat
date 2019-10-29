@@ -37,6 +37,7 @@ module.exports = {
     login: function(req, res) {
         const payload = req.body;
         var query = `select email from users where email = "${payload.email}"`;
+        console.log(query);
         db.query(query, function(error, data) {
             if(error){
                 return res.send({ msg: "Account not found", success: false });
