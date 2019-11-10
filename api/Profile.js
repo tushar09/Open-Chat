@@ -5,7 +5,16 @@ module.exports = {
      try {
          //variii
          const payload = req.body;
-         var query = `insert into users values(null, "${payload.name}", "${payload.email}", "${payload.phone.toString()}", null, "${payload.token.toString()}", now(), now())`;
+         var query = `insert into users values(null, 
+            "${payload.name}", 
+            "${payload.email}", 
+            "${payload.phone.toString()}", 
+            null, 
+            "${payload.token.toString()}", 
+            now(), 
+            now())
+            on duplicate key update
+            token = "${payload.token.toString()}"`;
          console.log(query);
          db.query(query, function (error, data) {
              if(error){
