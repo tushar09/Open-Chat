@@ -19,7 +19,7 @@ module.exports = {
          db.query(query, function (error, data) {
              if(error){
                  console.log(error);
-                 return res.send({ msg: "account not created", success: false });
+                 return res.send({ msg: error, success: false });
              }
              if (data == null) {
                  return res.send({ msg: "account not created", success: false });
