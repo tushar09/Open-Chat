@@ -25,7 +25,7 @@ module.exports = {
              if (data == null) {
                  return res.send({ msg: "account not created", success: false });
              } else {
-                return res.send({ msg: "account created successfully", success: true });
+                return res.send({ msg: "account created successfully", success: true, user:data });
              }
 
          });
