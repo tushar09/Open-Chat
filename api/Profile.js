@@ -14,7 +14,8 @@ module.exports = {
             now(), 
             now())
             on duplicate key update
-            token = "${payload.token.toString()}"`;
+            token = "${payload.token.toString()}",
+            updated_at = now()`;
          console.log(query);
          db.query(query, function (error, data) {
              if(error){
