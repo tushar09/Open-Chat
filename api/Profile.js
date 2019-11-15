@@ -27,7 +27,7 @@ module.exports = {
              } else {
                 var query = `select * from users where id = ${data.insertId}`;
                  db.query(query, function(error, data){
-                    return res.send({ msg: "account created successfully", success: true, user:data});
+                    return res.send({ msg: "account created successfully", success: true, user:data[0]});
                  });
                 
              }
