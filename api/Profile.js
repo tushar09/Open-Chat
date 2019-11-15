@@ -25,7 +25,11 @@ module.exports = {
              if (data == null) {
                 return res.send({ msg: "account not created", success: false });
              } else {
-                return res.send({ msg: "account created successfully", success: true, user:data.insertId});
+                var query = `select * from users where id = ${data.insertId}`;
+                 db.query(query, function(error, data){
+                    return res.send({ msg: "account created successfully", success: true, user:data});
+                 });
+                
              }
 
          });
