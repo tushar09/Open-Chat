@@ -1,4 +1,5 @@
 var db = require('../src/db/connector');
+const log = require('simple-node-logger').createSimpleFileLogger('project.log');;
 module.exports = function(io) {
     const con = io.of('/con');
     let user;
@@ -40,9 +41,10 @@ module.exports = function(io) {
         socket.on('userInfo', function(obj) {
             user = JSON.parse(obj);
             const query = `UPDATE users SET socket_id = "${socket.id}", updated_at = now() WHERE phone = "${user.phone}"`;
-            console.log(query);
+            //console.log(query);
+            log.info('subscription to ', JSON.parse(obj));
             db.query(query);
-            console.log(user);
+            //console.log(user);
         });
         socket.on('disconnect', function(s) {
             //const query = `UPDATE users SET socket_id = null, updated_at = now() WHERE email = "(select email form user where socket_id = "${socket.id}"))"`;
