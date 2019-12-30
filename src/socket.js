@@ -39,10 +39,10 @@ module.exports = function(io) {
             })
         });
         socket.on('userInfo', function(obj) {
+            log.info('asdf');
             user = JSON.parse(obj);
             const query = `UPDATE users SET socket_id = "${socket.id}", updated_at = now() WHERE phone = "${user.phone}"`;
             //console.log(query);
-            log.info(JSON.parse(obj));
             db.query(query);
             //console.log(user);
         });
