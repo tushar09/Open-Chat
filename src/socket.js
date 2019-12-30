@@ -39,7 +39,7 @@ module.exports = function(io) {
         });
         socket.on('userInfo', function(obj) {
             user = JSON.parse(obj);
-            const query = `UPDATE users SET socket_id = "${socket.id}", updated_at = now() WHERE email = "${user.email}"`;
+            const query = `UPDATE users SET socket_id = "${socket.id}", updated_at = now() WHERE phone = "${user.phone}"`;
             console.log(query);
             db.query(query);
             console.log(user);
