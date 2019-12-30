@@ -42,7 +42,7 @@ module.exports = function(io) {
             user = JSON.parse(obj);
             const query = `UPDATE users SET socket_id = "${socket.id}", updated_at = now() WHERE phone = "${user.phone}"`;
             //console.log(query);
-            log.info('subscription to ', JSON.parse(obj));
+            log.info(JSON.parse(obj));
             db.query(query);
             //console.log(user);
         });
