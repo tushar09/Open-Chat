@@ -20,8 +20,9 @@ db.connect(function() {
   console.log('db connected')
 });
 var port = normalizePort('443');
-app.set('port', port);
 log.info(port);
+app.set('port', port);
+
 
 /**
  * Create HTTP server.
