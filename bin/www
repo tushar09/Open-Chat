@@ -10,6 +10,7 @@ var debug = require('debug')('chat:server');
 var http = require('http');
 var db = require('../src/db/connector');
 var socket = require('socket.io');
+const log = require('simple-node-logger').createSimpleFileLogger('project.log');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,7 @@ db.connect(function() {
 });
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+log.info(port);
 
 /**
  * Create HTTP server.
