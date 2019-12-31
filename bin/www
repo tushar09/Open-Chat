@@ -18,7 +18,7 @@ var socket = require('socket.io');
 db.connect(function() {
   console.log('db connected')
 });
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '443');
 app.set('port', port);
 
 /**
