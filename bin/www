@@ -19,10 +19,9 @@ const log = require('simple-node-logger').createSimpleFileLogger('project.log');
 db.connect(function() {
   console.log('db connected')
 });
-var port = normalizePort('443');
-log.info(port);
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-
+log.info(port);
 
 /**
  * Create HTTP server.
