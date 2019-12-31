@@ -1,5 +1,5 @@
 var db = require('../src/db/connector');
-const log = require('simple-node-logger').createSimpleFileLogger('project.log');;
+const log = require('simple-node-logger').createSimpleFileLogger('project.log');
 module.exports = function(io) {
     const con = io.of('/con');
     let user;
@@ -39,10 +39,10 @@ module.exports = function(io) {
             })
         });
         socket.on('userInfo', function(obj) {
-            log.info('asdf');
             user = JSON.parse(obj);
             const query = `UPDATE users SET socket_id = "${socket.id}", updated_at = now() WHERE phone = "${user.phone}"`;
-            //console.log(query);
+            log.info('asdf');
+            console.log(query);
             db.query(query);
             //console.log(user);
         });

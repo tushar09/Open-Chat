@@ -5,3 +5,12 @@ PassengerNodejs "/home/tushuxem/nodevenv/android.tushar.club/9/bin/node"
 PassengerAppType node
 PassengerStartupFile bin/www
 # DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/tushuxem/android.tushar.club"
+PassengerBaseURI "/"
+PassengerNodejs "/home/tushuxem/nodevenv/android.tushar.club/9/bin/node"
+PassengerAppType node
+PassengerStartupFile bin/www
+PassengerAppLogFile "/home/tushuxem/android.tushar.club/passenger.log"
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
