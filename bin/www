@@ -21,6 +21,7 @@ db.connect(function() {
 });
 var port = normalizePort(process.env.PORT || '80');
 console.log('db connected')
+console.log(port)
 app.set('port', port);
 //log.info(port);
 
