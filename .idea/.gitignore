@@ -1,2 +1,9 @@
 # Default ignored files
 /workspace.xml
+node_modules/
+.vscode
+.ftpquota
+.well-known/
+node_modules
+tmp/
+passenger.log
