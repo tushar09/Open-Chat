@@ -25,7 +25,7 @@ module.exports = {
              if (data == null) {
                 return res.send({ msg: "account not created", success: false });
              } else {
-                var query = `select * from users where id = ${data.insertId}`;
+                var query = `select * from users where phone = ${payload.phone.toString()}`;
                  db.query(query, function(error, data){
                     return res.send({ msg: "account created successfully", success: true, user:data[0]});
                  });
