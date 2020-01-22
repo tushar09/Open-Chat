@@ -8,6 +8,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/createUser', profile.create);
+router.post('/checkUser', profile.checkUser);
 router.post('/login', profile.login);
 router.post('/getUsers', profile.users);
 router.post('/msgHistory', profile.msg);

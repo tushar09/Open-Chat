@@ -65,6 +65,15 @@ module.exports = {
     },
     checkUser: function(req, res){
         const payLoad = req.body;
+        //SELECT * FROM `users` WHERE LIKE +8801670983121;
+        const query = `select * from users where phone like "${payLoad.phone}"`;
+        db.query(query, function(error, data) {
+            if(error){
+                return res.send({ msg: "No users found", success: false });
+            }else {
+                return res.send(data);
+            }
+        });
     },
     msg: function(req, res) {
         const payLoad = req.body;
