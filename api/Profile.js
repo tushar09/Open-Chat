@@ -7,7 +7,7 @@ module.exports = {
          const payload = req.body;
          var query = `insert into users values(null, 
             "${payload.name}", 
-            "${payload.email}", 
+            null, 
             "${payload.phone.toString()}", 
             null, 
             "${payload.token.toString()}", 
@@ -16,7 +16,6 @@ module.exports = {
             on duplicate key update
             token = "${payload.token.toString()}",
             updated_at = now()`;
-         console.log(query);
          db.query(query, function (error, data) {
              if(error){
                  console.log(error);
@@ -31,7 +30,6 @@ module.exports = {
                  });
                 
              }
-
          });
      } catch(e) {
         console.log(e)
