@@ -27,7 +27,7 @@ module.exports = {
              } else {
                 var query = `select * from users where phone = ${payload.phone.toString()}`;
                  db.query(query, function(error, data){
-                    return res.send({ msg: "account created successfully", success: true, user:data[0]});
+                    return res.send({ msg: query, success: true, user:data[0]});
                  });
                 
              }
