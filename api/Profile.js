@@ -69,7 +69,7 @@ module.exports = {
             if(error){
                 return res.send({ msg: "No users found", success: false });
             }else {
-                return res.send(data);
+                return res.send(data[0]);
             }
         });
     },
