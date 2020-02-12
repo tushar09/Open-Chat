@@ -12,5 +12,6 @@ router.post('/checkUser', profile.checkUser);
 router.post('/login', profile.login);
 router.post('/getUsers', profile.users);
 router.post('/msgHistory', profile.msg);
+router.post('/sendNotification', profile.sendNotification);
 
 module.exports = router;
