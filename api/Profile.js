@@ -103,16 +103,9 @@ module.exports = {
             }else {
                 var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
                     to: data[0].token, 
-                    collapse_key: 'your_collapse_key',
-                    
-                    notification: {
-                        title: 'Title of your push notification', 
-                        body: 'Body of your push notification' 
-                    },
                     
                     data: {  //you can send only notification or only data(or include both)
-                        my_key: 'my value',
-                        my_another_key: 'my another value'
+                        msg: payLoad.msg
                     }
                 };
                 fcm.send(message, function(err, response){
