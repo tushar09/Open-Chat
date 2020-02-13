@@ -109,11 +109,12 @@ module.exports = {
                     }
                 };
                 fcm.send(message, function(err, response){
-                    if (err) {
-                        console.log("Something has gone wrong!");
-                    } else {
-                        console.log("Successfully sent with response: ", response);
-                    }
+                    // if (err) {
+                    //     console.log("Something has gone wrong!");
+                    // } else {
+                    //     console.log("Successfully sent with response: ", response);
+                    // }
+                    return res.send({ msg: "No users found", success: false });
                 });
             }
         });
