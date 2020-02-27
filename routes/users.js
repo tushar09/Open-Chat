@@ -14,4 +14,5 @@ router.post('/getUsers', profile.users);
 router.post('/msgHistory', profile.msg);
 router.post('/sendNotification', profile.sendNotification);
 
+
 module.exports = router;
