@@ -131,7 +131,7 @@ module.exports = {
                     to: "online", 
                     
                     data: {  //you can send only notification or only data(or include both)
-                        msg: payLoad.msg
+                        msg: payLoad.phone
                     }
                 };
                 fcm.send(message, function(err, response){
