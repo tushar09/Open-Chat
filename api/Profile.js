@@ -131,7 +131,8 @@ module.exports = {
                     to: "/topics/online", 
                     
                     data: {  //you can send only notification or only data(or include both)
-                        msg: payLoad.phone
+                        type: 0,
+                        userNumber: payLoad.phone
                     }
                 };
                 fcm.send(message, function(err, response){
