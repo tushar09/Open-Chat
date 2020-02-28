@@ -128,7 +128,7 @@ module.exports = {
                 return res.send({ msg: "No users found", success: false });
             }else {
                 var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
-                    to: "online", 
+                    to: "/topics/online", 
                     
                     data: {  //you can send only notification or only data(or include both)
                         msg: payLoad.phone
