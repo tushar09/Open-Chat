@@ -118,6 +118,32 @@ module.exports = {
                 });
             }
         });
+    },
+    online: function(req, res){
+        const payLoad = req.body;
+        //SELECT * FROM `users` WHERE LIKE +8801670983121;
+        const query = `select * from users where phone like "%${payLoad.phone}"`;
+        db.query(query, function(error, data) {
+            if(error){
+                return res.send({ msg: "No users found", success: false });
+            }else {
+                var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
+                    to: "online", 
+                    
+                    data: {  //you can send only notification or only data(or include both)
+                        msg: payLoad.msg
+                    }
+                };
+                fcm.send(message, function(err, response){
+                    // if (err) {
+                    //     console.log("Something has gone wrong!");
+                    // } else {
+                    //     console.log("Successfully sent with response: ", response);
+                    // }
+                    return res.send({ msg: "No users found", success: false });
+                });
+            }
+        });
     }
 
 }

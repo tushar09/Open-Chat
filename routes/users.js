@@ -13,6 +13,7 @@ router.post('/login', profile.login);
 router.post('/getUsers', profile.users);
 router.post('/msgHistory', profile.msg);
 router.post('/sendNotification', profile.sendNotification);
+router.post('/online', profile.online);
 
 
 module.exports = router;
