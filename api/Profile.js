@@ -121,7 +121,6 @@ module.exports = {
     },
     online: function(req, res){
         const payLoad = req.body;
-        return res.send({ msg: "No users found", success: false });
         //SELECT * FROM `users` WHERE LIKE +8801670983121;
         const query = `select * from users where phone like "%${payLoad.phone}"`;
         db.query(query, function(error, data) {
@@ -136,11 +135,11 @@ module.exports = {
                     }
                 };
                 fcm.send(message, function(err, response){
-                    // if (err) {
-                    //     console.log("Something has gone wrong!");
-                    // } else {
-                    //     console.log("Successfully sent with response: ", response);
-                    // }
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log("Successfully sent with response: ", response);
+                    }
                     return res.send({ msg: "No users found", success: false });
                 });
             }
