@@ -7,7 +7,7 @@ module.exports = {
     sendMsg: function(req, res){
         const payLoad = req.body;
         var message = {
-            to: payLoad.topic,
+            to: '/topics/'.concat(payLoad.topic),
             data:{
                 type: constants.msgType.text,
                 sender: payLoad.sender,
