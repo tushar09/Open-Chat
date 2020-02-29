@@ -158,7 +158,7 @@ module.exports = {
                     to: "/topics/offline", 
                     
                     data: {  //you can send only notification or only data(or include both)
-                        type: 0,
+                        type: 1,
                         userNumber: payLoad.phone
                     }
                 };
