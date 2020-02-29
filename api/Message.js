@@ -17,7 +17,7 @@ module.exports = {
             }
         };
         fcm.send(message, function(err, res){
-            return res.send({ response, success: false });
+            return res.send({ res, success: false });
         });
     }
 }
