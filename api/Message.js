@@ -7,7 +7,7 @@ module.exports = {
     sendMsg: function(req, res){
         const payLoad = req.body;
         var message = {
-            to: '/topics/'.concat(payLoad.topic),
+            to: '/topics/'.concat(payLoad.topic,
             data:{
                 type: constants.msgType.text,
                 sender: payLoad.sender,
@@ -16,8 +16,8 @@ module.exports = {
                 createdAt: payLoad.createdAt
             }
         };
-        fcm.send(message, function(err, res){
-            return res.send({ res, success: false });
+        fcm.send(message, function(err, response){
+            return res.send({ response, success: false });
         });
     }
 }
