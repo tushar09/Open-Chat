@@ -7,4 +7,4 @@ const msgType = {
     link: 4,
     typing: 5
 }
-export{serverKey, msgType};
+module.exports = {serverKey, msgType};
