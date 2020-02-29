@@ -7,5 +7,4 @@ const msgType = {
     link: 4,
     typing: 5
 }
-export{serverKey};
-export{msgType};
+export{serverKey, msgType};
