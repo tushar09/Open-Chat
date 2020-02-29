@@ -3,7 +3,7 @@ const msgType = {
     online: 0,
     offLine: 1,
     text: 2,
-    picture: 3,
+    image: 3,
     link: 4,
     typing: 5
 }
