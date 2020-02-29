@@ -136,12 +136,7 @@ module.exports = {
                     }
                 };
                 fcm.send(message, function(err, response){
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log("Successfully sent with response: ", response);
-                    }
-                    return res.send({ msg: "No users found", success: false });
+                    return res.send({ response, success: err });
                 });
             }
         });
