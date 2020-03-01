@@ -8,7 +8,7 @@ module.exports = {
         const payLoad = req.body;
 
         //const query = `select * from users where phone like "%${payLoad.phone}"`;
-        const query = `insert into topics values(null, "%${payLoad.phone}")`;
+        const query = `insert into topics values(null, "${payLoad.topic}")`;
         db.query(query, function(error, data){
             if(error){
                 console.log(error);
