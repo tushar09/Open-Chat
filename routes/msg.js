@@ -3,5 +3,6 @@ var router = express.Router();
 var msg = require('../api/Message');
 
 router.post('/sendMsg', msg.sendMsg);
+router.post('/history', msg.history);
 
 module.exports = router;

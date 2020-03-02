@@ -10,9 +10,6 @@ module.exports = {
         //const query = `select * from users where phone like "%${payLoad.phone}"`;
         const query = `insert into topics values(null, "${payLoad.topic}") on duplicate key update name = "${payLoad.topic}"`;
         db.query(query, function(error, data){
-            if(error){
-                console.log(error);
-            }
         });
 
         const queryMsg = `insert into msg values(
@@ -24,7 +21,6 @@ module.exports = {
             now()
         )`;
 
-        console.log(queryMsg);
         db.query(queryMsg, function(err, data){
 
         });
@@ -42,5 +38,35 @@ module.exports = {
         fcm.send(message, function(err, response){
             return res.send({ response, success: err });
         });
+    },
+    history: function(req, res){
+        
+        const payLoad = req.body;
+        const query;
+
+        if(payLoad.id == 0){
+            query = `SELECT * FROM msg 
+            order by id 
+            WHERE id < 
+            (SELECT max(id) FROM msg) 
+            LIMIT 100`;
+        }else{
+            query = `SELECT * FROM msg 
+            order by id 
+            WHERE id < 
+            "${payLoad.sender}"
+            LIMIT 100`;
+        }
+        console.log(query);
+        db.query(query, function(err, data){
+            if(err){
+                console.log(err);
+                res.send(err);
+            }else{
+                res.send(data);
+            }
+        });
+
+        
     }
 }
