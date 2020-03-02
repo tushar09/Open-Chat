@@ -50,7 +50,7 @@ module.exports = {
             WHERE id < 
             (SELECT max(id) FROM msg)
             and
-            topic_id = (select id from topics where name = "${payLoad.topic}")
+            topics_id = (select id from topics where name = "${payLoad.topic}")
             LIMIT 100`;
         }else{
             query = `SELECT * FROM msg 
@@ -58,7 +58,7 @@ module.exports = {
             WHERE id < 
             "${payLoad.id}"
             and
-            topic_id = (select id from topics where name = "${payLoad.topic}")
+            topics_id = (select id from topics where name = "${payLoad.topic}")
             LIMIT 100`;
         }
         console.log(query);
