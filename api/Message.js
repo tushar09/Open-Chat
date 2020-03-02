@@ -48,13 +48,17 @@ module.exports = {
             query = `SELECT * FROM msg 
             order by id 
             WHERE id < 
-            (SELECT max(id) FROM msg) 
+            (SELECT max(id) FROM msg)
+            and
+            topic_id = (select id from topics where name = "${payLoad.topic}")
             LIMIT 100`;
         }else{
             query = `SELECT * FROM msg 
             order by id 
             WHERE id < 
             "${payLoad.sender}"
+            and
+            topic_id = (select id from topics where name = "${payLoad.topic}")
             LIMIT 100`;
         }
         console.log(query);
