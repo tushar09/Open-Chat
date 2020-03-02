@@ -55,7 +55,7 @@ module.exports = {
         }else{
             query = `SELECT * FROM msg 
             WHERE id < 
-            "${payLoad.id}"
+            ${payLoad.id}
             and
             topics_id = (select id from topics where name = "${payLoad.topic}")
             LIMIT 100
