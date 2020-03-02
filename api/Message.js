@@ -8,7 +8,7 @@ module.exports = {
         const payLoad = req.body;
 
         //const query = `select * from users where phone like "%${payLoad.phone}"`;
-        const query = `insert into topics values(null, "${payLoad.topic}") on duplicate key update name = "${payLoad.topic}"`;
+        const query = `insert into topics values(null, "${payLoad.topic}") on duplicate key update`;
         db.query(query, function(error, data){
             if(error){
                 console.log(error);
@@ -17,7 +17,7 @@ module.exports = {
 
         const queryMsg = `insert into msg values(
             null,
-            (select id from users where phone = "${payLoad.phone}"),
+            (select id from users where phone = "${payLoad.sender}"),
             "${payLoad.msg}",
             (select id from topic where name = "${payLoad.topic}"),
             now(),
