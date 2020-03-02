@@ -15,6 +15,20 @@ module.exports = {
             }
         });
 
+        const queryMsg = `insert into msg values(
+            null,
+            (select id from users where phone = "${payLoad.phone}"),
+            "${payLoad.msg}",
+            (select id from topic where name = "${payLoad.topic}"),
+            now(),
+            now()
+        )`;
+
+        console.log(queryMsg);
+        db.query(queryMsg, function(err, data){
+
+        });
+
         var message = {
             to: '/topics/'.concat(payLoad.topic),
             data:{
