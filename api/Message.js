@@ -42,7 +42,7 @@ module.exports = {
     history: function(req, res){
         
         const payLoad = req.body;
-        const query;
+        var query;
 
         if(payLoad.id == 0){
             query = `SELECT * FROM msg 
