@@ -19,7 +19,7 @@ module.exports = {
             null,
             (select id from users where phone = "${payLoad.sender}"),
             "${payLoad.msg}",
-            (select id from topic where name = "${payLoad.topic}"),
+            (select id from topics where name = "${payLoad.topic}"),
             now(),
             now()
         )`;
