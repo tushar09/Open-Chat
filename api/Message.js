@@ -46,20 +46,20 @@ module.exports = {
 
         if(payLoad.id == 0){
             query = `SELECT * FROM msg 
-            order by id 
             WHERE id < 
             (SELECT max(id) FROM msg)
             and
             topics_id = (select id from topics where name = "${payLoad.topic}")
-            LIMIT 100`;
+            LIMIT 100
+            order by id `;
         }else{
             query = `SELECT * FROM msg 
-            order by id 
             WHERE id < 
             "${payLoad.id}"
             and
             topics_id = (select id from topics where name = "${payLoad.topic}")
-            LIMIT 100`;
+            LIMIT 100
+            order by id `;
         }
         console.log(query);
         db.query(query, function(err, data){
