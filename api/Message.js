@@ -26,7 +26,7 @@ module.exports = {
             (select id from topics where name = "${payLoad.topic}"),
             "${payLoad.msgId}"
             "${payLoad.type}"
-            now(),
+            ${payLoad.createdAt},
             now()
         )`;
 
