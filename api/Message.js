@@ -24,8 +24,8 @@ module.exports = {
             "${payLoad.msg}",
             ${url}
             (select id from topics where name = "${payLoad.topic}"),
-            "${payLoad.msgId}"
-            "${payLoad.type}"
+            "${payLoad.msgId}",
+            "${payLoad.type}",
             ${payLoad.createdAt},
             now()
         )`;
