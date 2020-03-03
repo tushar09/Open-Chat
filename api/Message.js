@@ -54,20 +54,24 @@ module.exports = {
         var query;
 
         if(payLoad.id == 0){
-            query = `SELECT * FROM msg 
-            WHERE id < 
+            query = `SELECT msg.*, users.name, users.phone FROM msg 
+            join users
+            on sender_id = users.id
+            WHERE msg.id <=
             (SELECT max(id) FROM msg)
             and
             topics_id = (select id from topics where name = "${payLoad.topic}")
-            order by id desc
+            order by msg.id desc
             LIMIT 100`;
         }else{
-            query = `SELECT * FROM msg 
-            WHERE id < 
+            query = `SELECT msg.*, users.name, users.phone FROM msg 
+            join users
+            on sender_id = users.id
+            WHERE msg.id < 
             ${payLoad.id}
             and
             topics_id = (select id from topics where name = "${payLoad.topic}")
-            order by id desc
+            order by msg.id desc
             LIMIT 100`;
         }
         console.log(query);
