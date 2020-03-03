@@ -22,7 +22,7 @@ module.exports = {
             null,
             (select id from users where phone = "${payLoad.sender}"),
             "${payLoad.msg}",
-            ${url}
+            "${url}",
             (select id from topics where name = "${payLoad.topic}"),
             "${payLoad.msgId}",
             "${payLoad.type}",
