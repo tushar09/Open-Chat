@@ -31,7 +31,7 @@ module.exports = {
         )`;
 
         db.query(queryMsg, function(err, data){
-
+            console.log(err);
         });
 
         var message = {
