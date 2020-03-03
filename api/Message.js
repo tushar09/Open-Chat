@@ -7,6 +7,20 @@ module.exports = {
     sendMsg: function(req, res){
         const payLoad = req.body;
 
+        var message = {
+            to: '/topics/'.concat(payLoad.topic),
+            data:{
+                type: constants.msgType.text,
+                sender: payLoad.sender,
+                msg: payLoad.msg,
+                msgId: payLoad.msgId,
+                createdAt: payLoad.createdAt
+            }
+        };
+        fcm.send(message, function(err, response){
+            return res.send({ response, success: err });
+        });
+
         //const query = `select * from users where phone like "%${payLoad.phone}"`;
         const query = `insert into topics values(null, "${payLoad.topic}") on duplicate key update name = "${payLoad.topic}"`;
         db.query(query, function(error, data){
@@ -32,20 +46,6 @@ module.exports = {
 
         db.query(queryMsg, function(err, data){
             console.log(err);
-        });
-
-        var message = {
-            to: '/topics/'.concat(payLoad.topic),
-            data:{
-                type: constants.msgType.text,
-                sender: payLoad.sender,
-                msg: payLoad.msg,
-                msgId: payLoad.msgId,
-                createdAt: payLoad.createdAt
-            }
-        };
-        fcm.send(message, function(err, response){
-            return res.send({ response, success: err });
         });
     },
     history: function(req, res){
