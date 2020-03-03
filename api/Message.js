@@ -12,11 +12,20 @@ module.exports = {
         db.query(query, function(error, data){
         });
 
+        var url;
+        if(payLoad.url){
+            url = payLoad.url;
+        }else{
+            url = null;
+        }
         const queryMsg = `insert into msg values(
             null,
             (select id from users where phone = "${payLoad.sender}"),
             "${payLoad.msg}",
+            ${url}
             (select id from topics where name = "${payLoad.topic}"),
+            "${payLoad.msgId}"
+            "${payLoad.type}"
             now(),
             now()
         )`;
