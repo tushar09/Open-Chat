@@ -10,9 +10,10 @@ module.exports = {
         var message = {
             to: '/topics/'.concat(payLoad.topic),
             data:{
-                type: constants.msgType.text,
+                type: payLoad.type,
                 sender: payLoad.sender,
                 msg: payLoad.msg,
+                url: payLoad.url,
                 msgId: payLoad.msgId,
                 createdAt: payLoad.createdAt
             }
