@@ -19,12 +19,6 @@ module.exports = {
             }
         };
         fcm.send(message, function(err, response){
-            if(err){
-                console.log(err);
-            }else{
-                console.log(response);
-            }
-            
             return res.send({ response, success: err });
         });
 
@@ -81,14 +75,7 @@ module.exports = {
             order by msg.id desc
             LIMIT 100`;
         }
-        console.log(query);
         db.query(query, function(err, data){
-            if(err){
-                console.log(err);
-                res.send(err);
-            }else{
-                res.send(data);
-            }
         });
 
         
