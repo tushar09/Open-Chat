@@ -19,6 +19,12 @@ module.exports = {
             }
         };
         fcm.send(message, function(err, response){
+            if(err){
+                console.log(err);
+            }else{
+                console.log(response);
+            }
+            
             return res.send({ response, success: err });
         });
 
@@ -46,7 +52,7 @@ module.exports = {
         )`;
 
         db.query(queryMsg, function(err, data){
-            console.log(err);
+            
         });
     },
     history: function(req, res){
