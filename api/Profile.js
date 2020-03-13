@@ -55,7 +55,8 @@ module.exports = {
     },
     users: function(req, res) {
         const payLoad = req.body;
-        const query = `select * from users where email <> "${payLoad.email}"`;
+        const query = `select * from users where phone in (${payLoad.join(",")})`;
+        console.log(query);
         db.query(query, function(error, data) {
             if(error){
                 return res.send({ msg: "No users found", success: false });
