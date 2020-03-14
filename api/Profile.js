@@ -21,7 +21,7 @@ module.exports = {
             updated_at = now()`;
          db.query(query, function (error, data) {
              if(error){
-                 console.log(error);
+                 
                  return res.send({ msg: error, success: false });
              }
              if (data == null) {
@@ -35,7 +35,7 @@ module.exports = {
              }
          });
      } catch(e) {
-        console.log(e)
+        
      }
     },
     update: function (req, res) {
@@ -44,7 +44,7 @@ module.exports = {
     login: function(req, res) {
         const payload = req.body;
         var query = `select email from users where email = "${payload.email}"`;
-        console.log(query);
+        
         db.query(query, function(error, data) {
             if(error){
                 return res.send({ msg: "Account not found", success: false });
@@ -85,7 +85,7 @@ module.exports = {
         or msg.sender_id = (select id from users where email = "${payLoad.receiverEmail}")  
         OR msg.receiver_id = (select id from users where email = "${payLoad.email}")
         order by msg.id`;
-        console.log(query);
+
         db.query(query, function(error, data) {
             if(error){
                 return res.send({ msg: "No users found", success: false });
@@ -159,11 +159,7 @@ module.exports = {
                     }
                 };
                 fcm.send(message, function(err, response){
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log("Successfully sent with response: ", response);
-                    }
+                    
                     return res.send({ msg: "No users found", success: false });
                 });
             }
