@@ -49,6 +49,29 @@ module.exports = {
             
         });
     },
+    sendCall: function(req, res){
+        const payLoad = req.body;
+        const query = `SELECT token from users where phone = "${payLoad.sender}"`;
+        db.query(query, function(err, data){
+            if(err){
+                res.send({success: false, msg: "user not found"});
+            }else{
+                var message = {
+                    to: data[0],
+                    data:{
+                        type: payLoad.type,
+                        sender: payLoad.sender,
+                        callId: payLoad.callId,
+                        createdAt: payLoad.createdAt
+                    }
+                };
+                fcm.send(message, function(err, response){
+                    return res.send({ response, success: err });
+                });
+            }
+        });
+        
+    },
     history: function(req, res){
         
         const payLoad = req.body;
