@@ -91,7 +91,7 @@ module.exports = {
                 res.send({success: false, msg: "user not found"});
             }else{
                 var message = {
-                    to: data[0],
+                    to: data[0].token,
                     data:{
                         type: payLoad.type,
                         sender: payLoad.sender,
@@ -100,7 +100,7 @@ module.exports = {
                     }
                 };
                 fcm.send(message, function(err, response){
-                    return res.send({ response, success: data[0] });
+                    return res.send({ response, success: err });
                 });
             }
         });
