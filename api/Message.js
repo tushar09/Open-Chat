@@ -100,7 +100,7 @@ module.exports = {
                     }
                 };
                 fcm.send(message, function(err, response){
-                    return res.send({ response, success: err });
+                    return res.send({ response, success: data[0] });
                 });
             }
         });
