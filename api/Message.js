@@ -96,6 +96,7 @@ module.exports = {
                         type: payLoad.type,
                         sender: payLoad.sender,
                         callId: payLoad.callId,
+                        sdp: payLoad.sdp,
                         createdAt: payLoad.createdAt
                     }
                 };
