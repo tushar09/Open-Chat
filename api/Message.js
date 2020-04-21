@@ -106,5 +106,55 @@ module.exports = {
             }
         });
         
+    },
+    sendAns: function(req, res){
+        const payLoad = req.body;
+        const query = `SELECT token from users where phone = "${payLoad.receiver}"`;
+        db.query(query, function(err, data){
+            if(err){
+                res.send({success: false, msg: "user not found"});
+            }else{
+                var message = {
+                    to: data[0].token,
+                    data:{
+                        type: payLoad.type,
+                        sender: payLoad.sender,
+                        callId: payLoad.callId,
+                        sdp: payLoad.sdp,
+                        webRtcType: payLoad.webRtcType
+                    }
+                };
+                fcm.send(message, function(err, response){
+                    return res.send({ response, success: err });
+                });
+            }
+        });
+        
+    },
+    sendCandi: function(req, res){
+        const payLoad = req.body;
+        const query = `SELECT token from users where phone = "${payLoad.receiver}"`;
+        db.query(query, function(err, data){
+            if(err){
+                res.send({success: false, msg: "user not found"});
+            }else{
+                var message = {
+                    to: data[0].token,
+                    data:{
+                        type: payLoad.type,
+                        sender: payLoad.sender,
+                        callId: payLoad.callId,
+                        sdp: payLoad.sdp,
+                        id: payLoad.webRtcType,
+                        label: payLoad.label,
+                        candidate:payLoad.candidate
+                    }
+                };
+                fcm.send(message, function(err, response){
+                    return res.send({ response, success: err });
+                });
+            }
+        });
+        
     }
 }
