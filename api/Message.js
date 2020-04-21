@@ -145,7 +145,7 @@ module.exports = {
                         sender: payLoad.sender,
                         callId: payLoad.callId,
                         sdp: payLoad.sdp,
-                        id: payLoad.webRtcType,
+                        id: payLoad.id,
                         label: payLoad.label,
                         candidate:payLoad.candidate
                     }
