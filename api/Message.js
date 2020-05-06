@@ -98,8 +98,7 @@ module.exports = {
                         callId: payLoad.callId,
                         sdp: payLoad.sdp,
                         createdAt: payLoad.createdAt
-                    },
-                    time_to_live: 10
+                    }
                 };
                 fcm.send(message, function(err, response){
                     return res.send({ response, success: err });
