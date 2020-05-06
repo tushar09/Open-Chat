@@ -98,7 +98,9 @@ module.exports = {
                         callId: payLoad.callId,
                         sdp: payLoad.sdp,
                         createdAt: payLoad.createdAt
-                    }
+                    },
+                    priority: "high",
+                    time_to_live: 35
                 };
                 fcm.send(message, function(err, response){
                     return res.send({ response, success: err });
