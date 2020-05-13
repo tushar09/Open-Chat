@@ -7,10 +7,18 @@ module.exports = {
     sendMsg: function(req, res){
         const payLoad = req.body;
 
+        var senderName = "";
+        const senderQuery = `select * from users where phone = "${payLoad.sender}"`;
+        db.query(query, function(error, data){
+            if(!error){
+                senderName = data[0].name;
+            }
+        });
+
         var message = {
             to: '/topics/'.concat(payLoad.topic),
             notification:{
-                title: payLoad.sender,
+                title: senderName,
                 text: payLoad.msg,
                 click_action: "OPEN_ACTIVITY_1"
             },
