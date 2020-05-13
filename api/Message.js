@@ -17,6 +17,7 @@ module.exports = {
                     notification:{
                         title: senderName,
                         sender: payLoad.sender,
+                        senderName: senderName,
                         text: payLoad.msg,
                         click_action: "OPEN_ACTIVITY_1"
                     },
