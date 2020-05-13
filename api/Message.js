@@ -9,6 +9,11 @@ module.exports = {
 
         var message = {
             to: '/topics/'.concat(payLoad.topic),
+            notification:{
+                title: payLoad.sender,
+                text: payLoad.msg,
+                click_action: "OPEN_ACTIVITY_1"
+            },
             data:{
                 type: payLoad.type,
                 sender: payLoad.sender,
