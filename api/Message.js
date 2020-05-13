@@ -17,13 +17,13 @@ module.exports = {
                     notification:{
                         title: senderName,
                         sender: payLoad.sender,
-                        senderName: senderName,
                         text: payLoad.msg,
                         click_action: "OPEN_ACTIVITY_1"
                     },
                     data:{
                         type: payLoad.type,
                         sender: payLoad.sender,
+                        senderName: senderName,
                         msg: payLoad.msg,
                         url: payLoad.url,
                         msgId: payLoad.msgId,
