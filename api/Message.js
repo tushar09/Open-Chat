@@ -10,7 +10,7 @@ module.exports = {
         var senderName = "";
         const senderQuery = `select * from users where phone = "${payLoad.sender}"`;
         db.query(query, function(error, data){
-            if(!error){
+            if(data){
                 senderName = data[0].name;
             }
         });
