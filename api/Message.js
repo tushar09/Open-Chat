@@ -93,8 +93,8 @@ module.exports = {
                 var message = {
                     to: data[0].token,
                     notification:{
-                        title: "",
-                        text: "",
+                        title: "Test",
+                        text: "Test",
                         click_action: "OPEN_ACTIVITY_1"
                     },
                     data:{
