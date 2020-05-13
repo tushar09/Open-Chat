@@ -9,58 +9,59 @@ module.exports = {
 
         var senderName = "";
         const senderQuery = `select * from users where phone = "${payLoad.sender}"`;
-        db.query(query, function(error, data){
+        db.query(senderQuery, function(error, data){
             if(data){
                 senderName = data[0].name;
+                var message = {
+                    to: '/topics/'.concat(payLoad.topic),
+                    notification:{
+                        title: senderName,
+                        text: payLoad.msg,
+                        click_action: "OPEN_ACTIVITY_1"
+                    },
+                    data:{
+                        type: payLoad.type,
+                        sender: payLoad.sender,
+                        msg: payLoad.msg,
+                        url: payLoad.url,
+                        msgId: payLoad.msgId,
+                        createdAt: payLoad.createdAt
+                    }
+                };
+                fcm.send(message, function(err, response){
+                    return res.send({ response, success: err });
+                });
+        
+                //const query = `select * from users where phone like "%${payLoad.phone}"`;
+                const query = `insert into topics values(null, "${payLoad.topic}") on duplicate key update name = "${payLoad.topic}"`;
+                db.query(query, function(error, data){
+                });
+        
+                var url;
+                if(payLoad.url){
+                    url = payLoad.url;
+                }else{
+                    url = null;
+                }
+                const queryMsg = `insert into msg values(
+                    null,
+                    (select id from users where phone = "${payLoad.sender}"),
+                    "${payLoad.msg}",
+                    "${url}",
+                    (select id from topics where name = "${payLoad.topic}"),
+                    "${payLoad.msgId}",
+                    "${payLoad.type}",
+                    ${payLoad.createdAt},
+                    now()
+                )`;
+        
+                db.query(queryMsg, function(err, data){
+                    
+                });
             }
         });
 
-        var message = {
-            to: '/topics/'.concat(payLoad.topic),
-            notification:{
-                title: senderName,
-                text: payLoad.msg,
-                click_action: "OPEN_ACTIVITY_1"
-            },
-            data:{
-                type: payLoad.type,
-                sender: payLoad.sender,
-                msg: payLoad.msg,
-                url: payLoad.url,
-                msgId: payLoad.msgId,
-                createdAt: payLoad.createdAt
-            }
-        };
-        fcm.send(message, function(err, response){
-            return res.send({ response, success: err });
-        });
-
-        //const query = `select * from users where phone like "%${payLoad.phone}"`;
-        const query = `insert into topics values(null, "${payLoad.topic}") on duplicate key update name = "${payLoad.topic}"`;
-        db.query(query, function(error, data){
-        });
-
-        var url;
-        if(payLoad.url){
-            url = payLoad.url;
-        }else{
-            url = null;
-        }
-        const queryMsg = `insert into msg values(
-            null,
-            (select id from users where phone = "${payLoad.sender}"),
-            "${payLoad.msg}",
-            "${url}",
-            (select id from topics where name = "${payLoad.topic}"),
-            "${payLoad.msgId}",
-            "${payLoad.type}",
-            ${payLoad.createdAt},
-            now()
-        )`;
-
-        db.query(queryMsg, function(err, data){
-            
-        });
+        
     },
     history: function(req, res){
         
