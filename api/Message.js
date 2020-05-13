@@ -16,6 +16,7 @@ module.exports = {
                     to: '/topics/'.concat(payLoad.topic),
                     notification:{
                         title: senderName,
+                        sender: payLoad.sender,
                         text: payLoad.msg,
                         click_action: "OPEN_ACTIVITY_1"
                     },
