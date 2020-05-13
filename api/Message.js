@@ -92,6 +92,11 @@ module.exports = {
             }else{
                 var message = {
                     to: data[0].token,
+                    notification:{
+                        title: "",
+                        text: "",
+                        click_action: "OPEN_ACTIVITY_1"
+                    },
                     data:{
                         type: payLoad.type,
                         sender: payLoad.sender,
