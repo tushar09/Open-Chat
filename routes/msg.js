@@ -7,5 +7,6 @@ router.post('/history', msg.history);
 router.post('/webCall', msg.sendCall);
 router.post('/sendAns', msg.sendAns);
 router.post('/sendCandi', msg.sendCandi);
+router.post('/getTorrent', msg.getTorrent);
 
 module.exports = router;

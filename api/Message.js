@@ -2,6 +2,7 @@ var constants = require('../utils/Constant');
 var db = require('../src/db/connector');
 var FCM = require('fcm-node');
 var fcm = new FCM(constants.serverKey);
+var magnetToTorrent = require('magnet-to-torrent');
 
 module.exports = {
     sendMsg: function(req, res){
@@ -63,6 +64,18 @@ module.exports = {
             }
         });
 
+        
+    },
+    getTorrent: function(req, res){
+        const payLoad = req.body;
+        var magnet = payLoad.magnet;
+        magnetToTorrent.getLink(magnet)
+            .then( function(torrentLink){
+                console.log(torrentLink); // torrent url as string
+            })
+            .catch(function(error){
+                console.error(error); // couldn't get a valid link
+            });
         
     },
     history: function(req, res){
