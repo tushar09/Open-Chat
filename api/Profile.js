@@ -4,6 +4,7 @@ var serverKey = 'AAAAoreVr5M:APA91bEASlIDdp1m15I3TbKZkH2eD_8VR4w-elzNqFYzvT-d7fa
 var fcm = new FCM(serverKey);
 
 module.exports = {
+    //just to chesk
     create: function (req, res) {
      try {
          //variii

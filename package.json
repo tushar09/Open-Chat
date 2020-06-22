@@ -16,7 +16,8 @@
     "mysql": "^2.17.1",
     "pug": "^2.0.4",
     "simple-node-logger": "^18.12.23",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "magnet-to-torrent":"1.0.8"
   },
   "devDependencies": {
     "nodemon": "^1.19.3"
