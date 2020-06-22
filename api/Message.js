@@ -71,9 +71,11 @@ module.exports = {
         var magnet = payLoad.magnet;
         magnetToTorrent.getLink(magnet)
             .then( function(torrentLink){
+                res.send(torrentLink);
                 console.log(torrentLink); // torrent url as string
             })
             .catch(function(error){
+                res.send(error);
                 console.error(error); // couldn't get a valid link
             });
         
