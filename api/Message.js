@@ -76,7 +76,7 @@ module.exports = {
             })
             .catch(function(error){
                 res.send(error);
-                console.error(error); // couldn't get a valid link
+                console.error(magnet); // couldn't get a valid link
             });
         
     },
